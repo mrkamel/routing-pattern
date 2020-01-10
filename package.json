@@ -1,0 +1,41 @@
+{
+  "name": "routing-pattern",
+  "version": "1.0.0",
+  "description": "A powerful, but minimal library to conveniently parse and stringify route patterns",
+  "main": "dist/routing-pattern.js",
+  "repository": "https://github.com/mrkamel/routing-pattern",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "build:dev": "webpack --config webpack.dev.js",
+    "build:doc": "jsdoc --configure jsdoc.config.js",
+    "lint": "eslint webpack.*.js src/",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "better-docs": "^1.4.3",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^24.9.0",
+    "jsdoc": "^3.6.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "files": [
+    "dist/*.js",
+    "src/*.js"
+  ],
+  "dependencies": {}
+}
