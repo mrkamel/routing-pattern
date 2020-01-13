@@ -25,7 +25,7 @@ parseRoute('/en/sales/search/books/year/2019', /:locale/sales(/search/:q)(year/:
 // => { locale: 'en', q: 'books', year: '2019' }
 
 parseRoute('/products/3?foo=bar', '/products/:id')
-// => { foo: 'bar' }
+// => { id: 3, foo: 'bar' }
 ```
 
 To stringify routes:
