@@ -32,10 +32,16 @@ export function stringifyRoute (pattern, params = {}) {
   let path = pattern
   const queryStringParams = {}
 
+  const namedParametersMap = (pattern.match(/:[a-zA-Z0-9_]+/g) || []).reduce((acc, name) => {
+    acc[name.replace(/^:/g, '')] = true
+
+    return acc
+  }, {})
+
   Object.keys(presentParams).forEach((key) => {
     const placeholder = `:${key}`
 
-    if (!placeholder.match(/^:[a-zA-Z0-9_]+$/g) || pattern.indexOf(placeholder) === -1) {
+    if (!namedParametersMap[key] || !placeholder.match(/^:[a-zA-Z0-9_]+$/g) || pattern.indexOf(placeholder) === -1) {
       queryStringParams[key] = presentParams[key]
 
       return

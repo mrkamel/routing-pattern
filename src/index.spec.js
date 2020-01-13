@@ -47,6 +47,10 @@ describe('index', () => {
       expect(stringifyRoute(route, { categoryId: 1, productId: 2 })).toEqual('/categories/1/products/2')
     })
 
+    it('does not replace parameter prefixes', () => {
+      expect(stringifyRoute('/:kinds', { kind: 'test' })).toBeNull()
+    })
+
     it('returns null if required params are missing', () => {
       expect(stringifyRoute('/products/:id', {})).toBeNull()
       expect(stringifyRoute('/:locale/products/:id', { locale: 'en' })).toBeNull()
