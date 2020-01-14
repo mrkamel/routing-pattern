@@ -48,7 +48,11 @@ describe('index', () => {
     })
 
     it('does not replace parameter prefixes', () => {
-      expect(stringifyRoute('/:kinds', { kind: 'test' })).toBeNull()
+      expect(stringifyRoute('/:kinds/:kind', { kind: 'test' })).toBeNull()
+    })
+
+    it('does not replace regex variables', () => {
+      expect(stringifyRoute('/:test', { test: '$1' })).toEqual('/%241')
     })
 
     it('returns null if required params are missing', () => {

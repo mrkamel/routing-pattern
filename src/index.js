@@ -5,7 +5,7 @@ export function parseRoute (path, pattern, constraints = {}) {
   const escapedPattern = escapeRegexWithoutBraces(pattern).replace(/\(/g, '(?:').replace(/\)/g, ')?')
 
   const patternWithConstraints = namedParameters.reduce(
-    (acc, cur) => acc.replace(new RegExp(`:${cur}`, 'g'), `(${constraints[cur] || '[^/]+'})`),
+    (acc, cur) => acc.replace(new RegExp(`:${cur}(?![a-zA-Z0-9_])`, 'g'), `(${constraints[cur] || '[^/]+'})`),
     escapedPattern
   )
 
@@ -41,13 +41,13 @@ export function stringifyRoute (pattern, params = {}) {
   Object.keys(presentParams).forEach((key) => {
     const placeholder = `:${key}`
 
-    if (!namedParametersMap[key] || !placeholder.match(/^:[a-zA-Z0-9_]+$/g) || pattern.indexOf(placeholder) === -1) {
+    if (!namedParametersMap[key]) {
       queryStringParams[key] = presentParams[key]
 
       return
     }
 
-    path = path.replace(new RegExp(placeholder, 'g'), encodeURIComponent(presentParams[key]).replace(/\(/g, '%28').replace(/\)/g, '%29'))
+    path = path.replace(new RegExp(placeholder + '(?![a-zA-Z0-9_])', 'g'), () => encodeURIComponent(presentParams[key]).replace(/\(/g, '%28').replace(/\)/g, '%29'))
   })
 
   while (true) {

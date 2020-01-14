@@ -1,3 +1,7 @@
+# 1.0.3
+## FIXED
+* Fully fix placeholder prefixes
+
 # 1.0.2
 ## FIXED
 * Added missing yarn build
