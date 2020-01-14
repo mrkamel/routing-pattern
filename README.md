@@ -21,7 +21,7 @@ parseRoute('/products/3', '/products/:id')
 parseRoute('/products/x', '/products/:id', { constraints: { id: '[0-9]+' } })
 // => null
 
-parseRoute('/en/sales/search/books/year/2019', /:locale/sales(/search/:q)(year/:year))
+parseRoute('/en/sales/search/books/year/2019', /:locale/sales(/search/:q)(/year/:year))
 // => { locale: 'en', q: 'books', year: '2019' }
 
 parseRoute('/products/3?foo=bar', '/products/:id')
@@ -33,8 +33,11 @@ To stringify routes:
 ```javascript
 import { stringifyRoute } from 'routing-pattern'
 
-stringifyRoute('/:locale/sales/(search/:q)(year/:year)', { locale: 'en', q: 'some query', year: '2019' })
+stringifyRoute('/:locale/sales(/search/:q)(/year/:year)', { locale: 'en', q: 'some query', year: '2019' })
 // => '/en/sales/search/some%20query/year/2019'
+
+stringifyRoute('/:locale/sales(/search/:q)(/year/:year)', { locale: 'en', q: 'some query' })
+// => '/en/sales/search/some%20query'
 
 stringifyRoute('/products/:id', {})
 // => null
