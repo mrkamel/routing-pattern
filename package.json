@@ -1,6 +1,6 @@
 {
   "name": "routing-pattern",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A powerful, but minimal library to conveniently parse and stringify route patterns",
   "main": "dist/routing-pattern.js",
   "repository": "https://github.com/mrkamel/routing-pattern",
